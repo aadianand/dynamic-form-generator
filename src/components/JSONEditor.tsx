@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { useTheme } from "../context/ThemeContext"; // Import the theme context to access the theme
 
 interface JSONEditorProps {
   schema: any; // Current JSON schema
@@ -11,6 +12,9 @@ const JSONEditor: React.FC<JSONEditorProps> = ({ schema, onSchemaChange }) => {
     JSON.stringify(schema || {}, null, 2) // Initialize with an empty object if no schema
   );
   const [error, setError] = useState<string | null>(null); // Track errors
+
+  // Use theme context to apply theme
+  const { isDarkMode } = useTheme();
 
   // Update the text area if the `schema` prop changes
   useEffect(() => {
@@ -65,7 +69,16 @@ const JSONEditor: React.FC<JSONEditorProps> = ({ schema, onSchemaChange }) => {
   };
 
   return (
-    <div style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        backgroundColor: isDarkMode ? "black" : "white", // Apply background color based on theme
+        color: isDarkMode ? "white" : "black", // Apply text color based on theme
+        transition: "background-color 0.3s, color 0.3s", // Smooth transition
+      }}
+    >
       {error && (
         <div
           style={{
@@ -95,6 +108,8 @@ const JSONEditor: React.FC<JSONEditorProps> = ({ schema, onSchemaChange }) => {
           boxSizing: "border-box",
           resize: "none", // Prevent resizing of the textarea
           overflow: "auto", // Add scrolling for overflow content
+          backgroundColor: isDarkMode ? "#333" : "#fff", // Apply background color based on theme
+          color: isDarkMode ? "#fff" : "#000", // Apply text color based on theme
         }}
       />
     </div>

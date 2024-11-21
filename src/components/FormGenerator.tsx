@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useTheme } from "../context/ThemeContext"; // Import theme context
 
 interface FormGeneratorProps {
   schema: any;
@@ -7,7 +8,25 @@ interface FormGeneratorProps {
 
 const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
   if (!schema) {
-    return <div>Loading form...</div>; // Show loading message if schema is not passed
+    const { isDarkMode } = useTheme(); // Get theme context
+
+    // Show loading message with the appropriate background and text color
+    return (
+      <div
+        style={{
+          height: "95vh", // Full height of the viewport
+          display: "flex",
+          flexDirection: "column",
+          backgroundColor: isDarkMode ? "#333333" : "white", // Set bg color based on darkMode
+          color: isDarkMode ? "white" : "black", // Set text color based on darkMode
+          transition: "background-color 0.3s, color 0.3s", // Smooth transition
+          justifyContent: "center", // Center content
+          alignItems: "center", // Center content horizontally
+        }}
+      >
+        <div>Loading form...</div>
+      </div>
+    );
   }
 
   const {
@@ -24,14 +43,18 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
   const formTitle = schema.formTitle || "Untitled Form";
   const formDescription = schema.formDescription || "No description available.";
 
+  // Use theme context to apply the current theme
+  const { isDarkMode } = useTheme();
+
   return (
     <div
       style={{
-        height: "95vh", // Full height of the viewport
-        // height: "count(100vh - 56px)",
+        height: "100vh", // Full height of the viewport
         display: "flex",
         flexDirection: "column",
-        backgroundColor: "#f9f9f9",
+        backgroundColor: isDarkMode ? "#333" : "#f9f9f9", // Apply theme-based background color
+        color: isDarkMode ? "white" : "black", // Apply text color based on theme
+        transition: "background-color 0.3s, color 0.3s", // Smooth transition
       }}
     >
       <div
@@ -47,7 +70,7 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
           style={{
             maxWidth: "600px",
             margin: "0 auto",
-            backgroundColor: "white",
+            backgroundColor: isDarkMode ? "#444" : "white", // Form background color based on theme
             padding: "20px",
             borderRadius: "8px",
             boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
@@ -75,6 +98,8 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
                       marginTop: "4px",
                       border: "1px solid #ccc",
                       borderRadius: "4px",
+                      backgroundColor: isDarkMode ? "#555" : "#fff", // Background color based on theme
+                      color: isDarkMode ? "#fff" : "#000", // Text color based on theme
                     }}
                   />
                 )}
@@ -95,6 +120,8 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
                       marginTop: "4px",
                       border: "1px solid #ccc",
                       borderRadius: "4px",
+                      backgroundColor: isDarkMode ? "#555" : "#fff", // Background color based on theme
+                      color: isDarkMode ? "#fff" : "#000", // Text color based on theme
                     }}
                   />
                 )}
@@ -108,6 +135,8 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
                       marginTop: "4px",
                       border: "1px solid #ccc",
                       borderRadius: "4px",
+                      backgroundColor: isDarkMode ? "#555" : "#fff", // Background color based on theme
+                      color: isDarkMode ? "#fff" : "#000", // Text color based on theme
                     }}
                   >
                     <option value="">Select an option</option>
@@ -151,6 +180,8 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
                       border: "1px solid #ccc",
                       borderRadius: "4px",
                       resize: "vertical",
+                      backgroundColor: isDarkMode ? "#555" : "#fff", // Background color based on theme
+                      color: isDarkMode ? "#fff" : "#000", // Text color based on theme
                     }}
                   />
                 )}
@@ -171,11 +202,13 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
             style={{
               width: "100%",
               padding: "10px",
-              backgroundColor: "#007BFF",
+              // backgroundColor: "#007BFF",
               color: "white",
               border: "none",
               borderRadius: "4px",
               cursor: "pointer",
+              marginTop: "16px",
+              backgroundColor: isDarkMode ? "#006BB3" : "#007BFF", // Button color based on theme
             }}
           >
             Submit

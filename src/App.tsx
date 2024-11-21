@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import JSONEditor from "./components/JSONEditor";
 import FormGenerator from "./components/FormGenerator";
 import NavJSON from "./components/NavJSON";
+import { ThemeProvider } from "./context/ThemeContext";
 
 
 const App: React.FC = () => {
   const [schema, setSchema] = useState<any>(null); // State to manage the JSON schema
 
   return (
+    <ThemeProvider>
     <>
     <NavJSON />
     <div style={{ display: "flex", height: "100vh" }}>
@@ -22,6 +24,7 @@ const App: React.FC = () => {
       </div>
     </div>
     </>
+    </ThemeProvider>
   );
 };
 
