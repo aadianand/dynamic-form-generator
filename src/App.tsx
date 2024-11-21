@@ -7,9 +7,6 @@ import NavJSON from "./components/NavJSON";
 const App: React.FC = () => {
   const [schema, setSchema] = useState<any>(null); // State to manage the JSON schema
 
-  
-
- 
   return (
     <>
     <NavJSON />

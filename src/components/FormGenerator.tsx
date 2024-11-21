@@ -27,7 +27,8 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
   return (
     <div
       style={{
-        height: "100vh", // Full height of the viewport
+        height: "95vh", // Full height of the viewport
+        // height: "count(100vh - 56px)",
         display: "flex",
         flexDirection: "column",
         backgroundColor: "#f9f9f9",
