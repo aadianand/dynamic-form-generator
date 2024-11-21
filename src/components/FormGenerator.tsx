@@ -49,7 +49,7 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
   return (
     <div
       style={{
-        height: "100vh", // Full height of the viewport
+        height: "calc(100vh-56px)", // Full height of the viewport
         display: "flex",
         flexDirection: "column",
         backgroundColor: isDarkMode ? "#333" : "#f9f9f9", // Apply theme-based background color

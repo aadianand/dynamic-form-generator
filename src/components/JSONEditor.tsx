@@ -71,7 +71,7 @@ const JSONEditor: React.FC<JSONEditorProps> = ({ schema, onSchemaChange }) => {
   return (
     <div
       style={{
-        height: "100vh",
+        height: "calc(100vh-56px)",
         display: "flex",
         flexDirection: "column",
         backgroundColor: isDarkMode ? "black" : "white", // Apply background color based on theme
