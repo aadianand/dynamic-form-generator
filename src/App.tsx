@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import JSONEditor from "./components/JSONEditor";
 import FormGenerator from "./components/FormGenerator";
+import NavJSON from "./components/NavJSON";
+
 
 const App: React.FC = () => {
   const [schema, setSchema] = useState<any>(null); // State to manage the JSON schema
 
+  
+
+ 
   return (
+    <>
+    <NavJSON />
     <div style={{ display: "flex", height: "100vh" }}>
       {/* JSON Editor Section */}
       <div style={{ width: "50%", borderRight: "1px solid #ccc" }}>
@@ -17,6 +24,7 @@ const App: React.FC = () => {
         <FormGenerator schema={schema} />
       </div>
     </div>
+    </>
   );
 };
 

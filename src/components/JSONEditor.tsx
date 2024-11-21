@@ -28,6 +28,7 @@ const JSONEditor: React.FC<JSONEditorProps> = ({ schema, onSchemaChange }) => {
     }
   };
 
+
   return (
     <textarea
       ref={textareaRef}
@@ -35,12 +36,14 @@ const JSONEditor: React.FC<JSONEditorProps> = ({ schema, onSchemaChange }) => {
       onChange={handleJSONChange}
       style={{
         width: "100%",
-        height: "100%",
+        height: "calc(100vh - 0px)", // Use CSS calc for height adjustment
         padding: "10px",
         fontFamily: "monospace",
         fontSize: "14px",
         border: "1px solid #ccc",
         boxSizing: "border-box",
+        resize: "none", // Prevent resizing of the textarea
+        overflow: "auto", // Add scrolling for overflow content
       }}
     />
   );
